@@ -18,11 +18,14 @@
 /* ESTILOS GERAIS */
 body {
   font-family: Arial, sans-serif;
-  background-color: #111;
+  background-color: #191919;
   color: #eee;
   text-align: center;
   padding: 20px;
-}
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+} 
 
 #control-panel {
   flex: 2;
@@ -53,11 +56,18 @@ body {
   flex: 3;
   margin-top: 20px;
   border: 3px solid #0ff;
-  background-color: #222;
+  background-color: #111;
   color: #fff;
   height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 24px;
+}
+
+#gameCanvas{
+  border: 1px solid #333;
+  background-color: #000;
+  display: block;
+  margin: 20px auto;
 }

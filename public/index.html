@@ -1,32 +1,47 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8" />
-    <title>Teachable Machine Pose Model</title>
-    <link rel="stylesheet" href="style.css" />
 
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 30px; }
-        #canvas { border: 1px solid #333; }
-        #label-container div { margin: 5px 0; font-weight: bold; }
-    </style>
+<head>
+  <meta charset="UTF-8" />
+  <title>Teachable Machine Pose Model</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    #canvas {
+      border: 1px solid #333;
+    }
+
+    #label-container div {
+      margin: 5px 0;
+      font-weight: bold;
+    }
+  </style>
 </head>
 
 <body>
 
-    <h1>Teachable Machine Pose Model</h1>
-    <button type="button" onclick="init()">Start</button>
-    <div class="main-container">
-      <div class="game-board">game</div>
-      <div class="control-panel">
-        <canvas id="canvas"></canvas>
-        <div id="label-container"></div>
-      </div>
+  <div class="main-container">
+    <div>
+      <button type="button" onclick="init()">Start</button>
+      <h2 id="h2" style="color: white;"></h2>
     </div>
+    <canvas width="500" height="500" id="gameCanvas"> </canvas>
+    <div class="control-panel">
+      <canvas id="canvas"></canvas>
+      <div id="label-container"></div>
+    </div>
+  </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js"></script>
-    <script src="script.js"></script> 
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/pose@0.8/dist/teachablemachine-pose.min.js"></script>
+  <script src="script.js"></script>
 
 </body>
+
 </html>
