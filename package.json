@@ -1,0 +1,23 @@
+{
+  "name": "atividade-03-extens-o-ia",
+  "version": "1.0.0",
+  "description": "Projeto de jogo com reconhecimento de movimento",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/limaraujo/Atividade-03-Extens-o-IA.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/limaraujo/Atividade-03-Extens-o-IA/issues"
+  },
+  "homepage": "https://github.com/limaraujo/Atividade-03-Extens-o-IA#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
