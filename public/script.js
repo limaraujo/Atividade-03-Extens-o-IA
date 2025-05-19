@@ -1,5 +1,8 @@
 const URL = "./my-pose-model/";
 const game = document.getElementById("gameCanvas");
+const scoreDisplay = document.querySelector('.score--value');
+const endScore = document.querySelector('.score--final');
+const gameOverContainer = document.querySelector('.game-over-container');
 
 let model, webcam, ctx, labelContainer, maxPredictions;
 
@@ -138,6 +141,13 @@ function startGame() {
         }
     });
 
+    let score = 0;
+
+    function updateScore(points) {
+        score += points;
+        scoreDisplay.innerText = score.toString().padStart(2, '0');
+    }
+
     const checkEat = () => {
         const head = snake[snake.length - 1];
         if (head.x === food.x && head.y === food.y) {
@@ -148,6 +158,7 @@ function startGame() {
             }
             food.x = newPos.x;
             food.y = newPos.y;
+            updateScore(1);
         }
     }
 
@@ -162,13 +173,16 @@ function startGame() {
         })
 
         if (head.x < 0 || head.x >= 500 || head.y < 0 || head.y >= 500 || selfCollision) {
-            alert("Game Over!");
+            gameOver();
             return;
         }
     }
-
-
-    
+    const gameOver = () => {
+        direction = undefined;
+        endScore.innerText = score.toString().padStart(2, '0');
+        gameOverContainer.style.display = "flex";
+    }
+        
     const drawFood = () => {
         ctx_game.drawImage(foodImg, food.x, food.y, size, size);
     };
@@ -189,6 +203,8 @@ function startGame() {
             ctx_game.stroke();
         }
     }
+
+
 
     const gameLoop = () => {
         clearInterval(loopId);
