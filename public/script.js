@@ -1,6 +1,6 @@
 const URL = "./my-pose-model/";
 const game = document.getElementById("gameCanvas");
-const h2 = document.getElementById("h2");
+
 let model, webcam, ctx, labelContainer, maxPredictions;
 
 async function init() {
@@ -69,18 +69,17 @@ function startGame() {
     const ctx_game = game.getContext("2d");
     alert("Jogo iniciado! Use a webcam para jogar.");
 
-    const size = 20;
+    const size = 50;
 
     const snake = [ 
-        {x: 180, y: 180}, 
+        {x: 150, y: 150}, 
     ];
 
     const randomPosition = () => {
-        const gridSize = 20;
-        const maxCells = 500 / gridSize; 
+        const maxCells = 500 / size; 
 
-        const x = Math.floor(Math.random() * maxCells) * gridSize ;
-        const y = Math.floor(Math.random() * maxCells) * gridSize ;
+        const x = Math.floor(Math.random() * maxCells) * size ;
+        const y = Math.floor(Math.random() * maxCells) * size ;
 
         return { x, y };
     };
@@ -126,19 +125,6 @@ function startGame() {
         snake.shift()
     }
 
-    const gameLoop = () => {
-        clearInterval(loopId);
-        ctx_game.clearRect(0, 0, 500, 500);
-
-        drawSnake();
-        moveSnake();
-
-        loopId =  setTimeout(() => {
-            gameLoop();
-            drawGrid();
-            drawFood();
-        }, 300)
-    }
 
     document.addEventListener("keydown", (event) => {
         if (event.key === "ArrowUp" && direction !== "down") {
@@ -151,18 +137,47 @@ function startGame() {
             direction = "right";
         }
     });
+
+    const checkEat = () => {
+        const head = snake[snake.length - 1];
+        if (head.x === food.x && head.y === food.y) {
+            snake.push(head)
+            newPos = randomPosition();
+            while (snake.find(s => s.x === newPos.x && s.y === newPos.y)) {
+                newPos = randomPosition();
+            }
+            food.x = newPos.x;
+            food.y = newPos.y;
+        }
+    }
+
+    const checkCollision = () => {
+        const head = snake[snake.length - 1];
+        const notHead = snake.length - 2
+
+        const selfCollision = snake.find((position, index) => {
+            if (index < notHead){
+                return position.x === head.x && position.y === head.y;
+            }
+        })
+
+        if (head.x < 0 || head.x >= 500 || head.y < 0 || head.y >= 500 || selfCollision) {
+            alert("Game Over!");
+            return;
+        }
+    }
+
+
     
     const drawFood = () => {
         ctx_game.drawImage(foodImg, food.x, food.y, size, size);
     };
 
-    gameLoop();
-
     const drawGrid = () => {
         ctx_game.lineWidth = 0.5;
         ctx_game.strokeStyle = "#191919";
 
-        for (let i = 0; i < 500; i += 20) {
+        for (let i = 0; i < 500; i += size) {
             ctx_game.beginPath();
             ctx_game.moveTo(i, 0);
             ctx_game.lineTo(i, 500);
@@ -174,5 +189,23 @@ function startGame() {
             ctx_game.stroke();
         }
     }
+
+    const gameLoop = () => {
+        clearInterval(loopId);
+        ctx_game.clearRect(0, 0, 500, 500);
+
+        drawGrid();
+        drawFood();
+        moveSnake();
+        drawSnake();
+        checkEat();
+        checkCollision();
+
+        loopId =  setTimeout(() => {
+            gameLoop();
+        }, 500)
+    }
+
+    gameLoop();
 
 }

@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  padding-top: 2%;
 }
 
 .main-container {
@@ -10,9 +11,11 @@
   align-items: center;
   justify-content: center;
   height: 80%;
+  width: 100%;
   flex-direction: row;
   gap: 10%;
   margin: 0 5% 5% 5%;
+
 }
 
 /* ESTILOS GERAIS */
@@ -25,6 +28,9 @@ body {
   overflow: hidden;
   height: 100vh;
   width: 100vw;
+  align-items: center;
+  justify-self: center;
+  display: flex;
 } 
 
 #control-panel {
@@ -54,7 +60,6 @@ body {
 /* GAME BOARD */
 .game-board {
   flex: 3;
-  margin-top: 20px;
   border: 3px solid #0ff;
   background-color: #111;
   color: #fff;
@@ -71,3 +76,90 @@ body {
   display: block;
   margin: 20px auto;
 }
+
+button {
+  font-family: 'Arial', sans-serif;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Botão de Start */
+.start-btn {
+  background-color: #28a745;
+  color: white;
+  font-weight: bold;
+
+  font-weight: bold;
+  font-size: 2rem;
+  font-family: Arial, sans-serif;
+}
+
+.start-btn:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}
+
+/* Container do placar */
+.score {
+  margin-top: 15px;
+  font-weight: bold;
+  font-size: 2rem;
+  font-family: Arial, sans-serif;
+}
+
+.score--value {
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+
+.game-over-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 30px;
+  border-radius: 10px;
+  color: rgb(14, 14, 14);
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  
+}
+
+.restart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+
+  font-weight: bold;
+  font-size: 1rem;
+  font-family: Arial, sans-serif;
+
+  background-color: #940909;
+  color: rgb(255, 255, 255);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.restart:hover {
+  background-color: #7a0707;
+  transform: scale(1.05);
+}
+
